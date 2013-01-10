@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+$:.push 'lib'
+require 'rubygems'
+require 'thor'
+require 'server'
+
+class Main < Thor
+
+  desc 'server','Starts the dns server that will accept dns changes from vagrant machines'
+  def server
+    @server = VagrantDns::Server.new   
+    @server.process 
+    trap("INT") { @server.shutdown;exit 0}
+  end
+end
+
+
+
+Main.start(ARGV)
