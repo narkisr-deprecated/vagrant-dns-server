@@ -3,6 +3,13 @@ vagrant-dns enables easy dns management of multiple local Vagrant machines.
 
 It composed from a Vagrant plugin and standalone dns server, the plugin auto registers the host and ip of the VM once it boots up making it available for lookup on both the host and guest machines.
 
+# Install
+ 
+```bash
+  $ sudo aptitude install libzmq1  libzmq-dev
+  $ gem install vagrant-dns-server
+```
+
 # Usage
 
 Add the plugin to the project Gemfile, use vagrant_dns server to boot the local dns server
