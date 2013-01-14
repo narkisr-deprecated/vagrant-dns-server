@@ -1,4 +1,5 @@
 * Add 127.0.0.1 to resolve.conf on server startup, clear out on teardown
+* Add 10.0.2.2 to guest resolv.conf
 * Implement remove ip on VM shutdown
 * Enable remote api to the running server (listing, adding, removing)
 * Consider adding a hardcoded list of host (useful for non vagrant machines)
