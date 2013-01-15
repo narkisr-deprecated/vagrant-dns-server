@@ -11,9 +11,15 @@ module VagrantDns
 	@resolv = VagrantDns::ResolvConf.new
     end
 
+
+    def unpack(message)
+	_, host, ip, msg = message.split ' ', 4
+	[host, ip, msg.to_sym]
+    end
+
     def process
 	begin
-	  @resolv.append
+	  # @resolv.append
 	  zmq = EM::ZeroMQ::Context.new(1)
 	  EM.run {
 	    @dns = VagrantDns::DnsServer.new
@@ -22,9 +28,10 @@ module VagrantDns
 	    pull.bind(URL)
 	    pull.subscribe 'vagrant'
 	    pull.on(:message) { |part|
-		chan, host, ip, msg = part.copy_out_string.split ' ', 4
-		puts "#{chan} [#{ip}->#{host}]: is #{msg}"
-		REG.register(host,ip)
+            host, ip , stat=  unpack(part.copy_out_string)
+		puts "[#{ip}->#{host}]: is #{stat}"
+		REG.register(host,ip) if :up.eql?(stat)
+		REG.unregister(host,ip) if :down.eql?(stat)
 		part.close
 	    }
 	  }
@@ -41,7 +48,7 @@ module VagrantDns
 
     def shutdown
 	$stderr.puts "Cleaning up server"
-	@resolv.clear
+	# @resolv.clear
 	EM::stop()
     end
   end
