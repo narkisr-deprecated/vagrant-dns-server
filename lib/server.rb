@@ -8,11 +8,12 @@ module VagrantDns
   class Server
     def initialize
 	traps
-	VagrantDns::ResolvConf.new.append
+	@resolv = VagrantDns::ResolvConf.new
     end
 
     def process
 	begin
+	  @resolv.append
 	  zmq = EM::ZeroMQ::Context.new(1)
 	  EM.run {
 	    @dns = VagrantDns::DnsServer.new
@@ -40,6 +41,7 @@ module VagrantDns
 
     def shutdown
 	$stderr.puts "Cleaning up server"
+	@resolv.clear
 	EM::stop()
     end
   end
