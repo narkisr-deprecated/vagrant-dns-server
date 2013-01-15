@@ -3,3 +3,6 @@
 * Implement remove ip on VM shutdown
 * Enable remote api to the running server (listing, adding, removing)
 * Consider adding a hardcoded list of host (useful for non vagrant machines)
+
+
+See http://www.ubuntututorials.com/set-dns-server-ubuntu-12-04/
