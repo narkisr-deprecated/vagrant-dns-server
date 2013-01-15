@@ -13,7 +13,7 @@ module VagrantDns
 
 	protected
 	def remove(vm)
-        VagrantDns::NetworkBinder.new.bind(vm)
+        VagrantDns::NetworkBinder.new.unbind(vm)
 	end
     end
   end
