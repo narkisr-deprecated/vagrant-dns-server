@@ -18,6 +18,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency  'vagrant', '~>1.0.3'
   gem.add_dependency  'rubydns'
   gem.add_dependency  'em-zeromq'
+  gem.add_dependency  'zmq' # required by client
   gem.add_dependency  'thor'
   gem.add_dependency  'rubydns'
   gem.add_dependency  'juno'
