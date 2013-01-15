@@ -9,6 +9,7 @@ PATH
       rubydns
       thor
       vagrant (~> 1.0.3)
+      zmq
 
 GEM
   remote: https://rubygems.org/
@@ -57,6 +58,7 @@ GEM
       log4r (~> 1.1.9)
       net-scp (~> 1.0.4)
       net-ssh (~> 2.2.2)
+    zmq (2.1.4)
 
 PLATFORMS
   ruby
