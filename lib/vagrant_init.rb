@@ -1,6 +1,7 @@
 require 'vagrant'
 require 'constants'
 require 'middleware/update'
+require 'middleware/remove'
 require 'middleware/network_binder'
 require 'zmq'
 
