@@ -17,9 +17,12 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency  'vagrant', '~>1.0.3'
   gem.add_dependency  'rubydns'
-  gem.add_dependency  'zmq'
+  gem.add_dependency  'em-zeromq'
+  gem.add_dependency  'thor'
+  gem.add_dependency  'rubydns'
   gem.add_development_dependency  'bundler'
   gem.add_development_dependency  'mocha', '~>0.12.3'
   gem.add_development_dependency  'rake'
+  gem.add_development_dependency  'minitest'
 
 end
