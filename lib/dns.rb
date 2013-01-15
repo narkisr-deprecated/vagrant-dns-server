@@ -1,24 +1,22 @@
 require 'rubydns'
+require 'moneta'
+require 'forwardable'
 
 IN = Resolv::DNS::Resource::IN
+
+# TODO upstream should be configurable
 UPSTREAM = RubyDNS::Resolver.new([[:tcp, "8.8.8.8", 53], [:udp, "8.8.8.8", 53]])
 
 module VagrantDns
 
   class Registry 
+    extend Forwardable
+    def_delegator :@store, :store, :register
+    def_delegator :@store, :load, :read
+    def_delegator :@store, :delete, :delete
+
     def initialize
-	@reg = {}
-    end
-    def register(host,ip)
-	@reg[host] = ip	
-    end
-
-    def unregister(host)
-	@reg[host] = nil
-    end
-
-    def read(host)
-     @reg[host]	
+      @store = Moneta.new(:YAML,:file => "hosts.yaml")
     end
   end
 

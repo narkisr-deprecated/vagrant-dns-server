@@ -3,6 +3,8 @@ PATH
   specs:
     vagrant-dns-server (0.1)
       em-zeromq
+      moneta
+      net-ping
       rubydns
       rubydns
       thor
@@ -30,6 +32,11 @@ GEM
     minitest (4.4.0)
     mocha (0.12.8)
       metaclass (~> 0.0.1)
+    moneta (0.7.5)
+    net-ldap (0.2.2)
+    net-ping (1.5.3)
+      ffi (>= 1.0.0)
+      net-ldap (~> 0.2.2)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-ssh (2.2.2)
