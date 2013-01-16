@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    vagrant-dns-server (0.1)
+    vagrant-dns-server (0.2)
       em-zeromq
       log4r
       moneta
