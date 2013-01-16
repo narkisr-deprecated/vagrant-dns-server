@@ -11,5 +11,5 @@ Vagrant.actions[:provision].insert_after(Vagrant::Action::VM::Provision, Vagrant
 Vagrant.actions[:start].insert_after(Vagrant::Action::VM::Boot, VagrantDns::Middleware::Update)
 
 Vagrant.actions[:destroy].insert_after(Vagrant::Action::VM::ProvisionerCleanup, VagrantDns::Middleware::Remove)
-Vagrant.actions[:halt].insert_after(Vagrant::Action::VM::Halt, VagrantDns::Middleware::Remove)
+# Vagrant.actions[:halt].insert_after(Vagrant::Action::VM::Halt, VagrantDns::Middleware::Remove)
 
