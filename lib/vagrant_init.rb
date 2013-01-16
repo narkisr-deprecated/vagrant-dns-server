@@ -5,6 +5,7 @@ require 'middleware/remove'
 require 'middleware/network_binder'
 require 'zmq'
 
+#see http://tinyurl.com/bfuawuj  
 Vagrant.actions[:provision].insert_after(Vagrant::Action::VM::Provision, VagrantDns::Middleware::Update)
 Vagrant.actions[:start].insert_after(Vagrant::Action::VM::Provision, VagrantDns::Middleware::Update)
 
