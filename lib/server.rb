@@ -28,14 +28,16 @@ module VagrantDns
 	    pull.bind(URL)
 	    pull.subscribe 'vagrant'
 	    pull.on(:message) { |part|
-            host, ip , stat=  unpack(part.copy_out_string)
-		puts "[#{ip}->#{host}]: is #{stat}"
+            host, ip, stat=  unpack(part.copy_out_string)
+		puts "[#{ip}->#{host}]: is #{stat.to_s}"
 		REG.register(host,ip) if :up.eql?(stat)
-		REG.unregister(host,ip) if :down.eql?(stat)
+		REG.delete(host) if :down.eql?(stat)
 		part.close
 	    }
 	  }
-	rescue 
+	rescue => e
+	  $stderr.puts e
+	  $stderr.puts e.backtrace.join("\n")
 	  shutdown
 	end
     end
