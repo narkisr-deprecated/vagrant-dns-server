@@ -1,5 +1,6 @@
 module VagrantDns
 
+  UI = Vagrant::UI::Colored.new('dns')
   class NetworkBinder
     def bind(vm)
 	(host,ip) = host_ip(vm)
@@ -29,8 +30,8 @@ module VagrantDns
 	pub = context.socket ZMQ::PUB
 	pub.connect URL
 	res = pub.send("#{CHANNEL} #{host} #{ip} #{status.to_s}", ZMQ::NOBLOCK)
-	LOGGER.info("notifying dns server with #{status}") if res
-	LOGGER.info("dns server isn't up, skiping notifying #{status} status") if not res
+	UI.say(:info,"notifying dns server with #{status}") if res
+	UI.say(:info,"dns server isn't up, skiping notifying #{status} status") if not res
 	pub.close
     end
   end

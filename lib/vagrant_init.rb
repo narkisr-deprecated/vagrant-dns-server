@@ -1,4 +1,5 @@
 require 'vagrant'
+require 'log4r'
 require 'constants'
 require 'middleware/update'
 require 'middleware/remove'
