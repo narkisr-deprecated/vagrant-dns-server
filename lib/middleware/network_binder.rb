@@ -27,7 +27,8 @@ module VagrantDns
     # if socket is created on middleware initialization vagrant will get stuck
     def report(host,ip,status)
 	context = ZMQ::Context.new
-	pub = context.socket ZMQ::PUB
+	pub = context.socket(ZMQ::PUB)
+	pub.setoptions(ZMQ::HWM,20)
 	pub.connect URL
 	UI.say(:debug,"connection made")
 	res = pub.send("#{CHANNEL} #{host} #{ip} #{status.to_s}", ZMQ::NOBLOCK)
