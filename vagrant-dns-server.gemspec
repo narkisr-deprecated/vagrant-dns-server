@@ -23,6 +23,7 @@ Gem::Specification.new do |gem|
   gem.add_dependency  'rubydns'
   gem.add_dependency  'moneta'
   gem.add_dependency  'net-ping'
+  gem.add_dependency  'log4r'
   gem.add_development_dependency  'bundler'
   gem.add_development_dependency  'mocha', '~>0.12.3'
   gem.add_development_dependency  'rake'

@@ -29,7 +29,9 @@ module VagrantDns
 	pub = context.socket ZMQ::PUB
 	puts "connecting to #{URL}"
 	pub.connect URL
-	pub.send("#{CHANNEL} #{host} #{ip} #{status.to_s}", ZMQ::NOBLOCK)
+	res = pub.send("#{CHANNEL} #{host} #{ip} #{status.to_s}", ZMQ::NOBLOCK)
+	LOGGER.info("notifying dns server with #{status}") if res
+	LOGGER.info("dns server isn't up, skiping notifying #{status} status") if not res
 	pub.close
     end
   end

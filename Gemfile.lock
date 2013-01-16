@@ -3,6 +3,7 @@ PATH
   specs:
     vagrant-dns-server (0.1)
       em-zeromq
+      log4r
       moneta
       net-ping
       rubydns
