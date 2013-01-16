@@ -29,7 +29,7 @@ module VagrantDns
 	pub = context.socket ZMQ::PUB
 	puts "connecting to #{URL}"
 	pub.connect URL
-	pub.send "#{CHANNEL} #{host} #{ip} up"
+	pub.send "#{CHANNEL} #{host} #{ip} #{status.to_s}"
 	pub.close
     end
   end
