@@ -2,7 +2,8 @@ require 'rubydns'
 require 'moneta'
 require 'forwardable'
 
-UPSTREAM = RubyDNS::Resolver.new([[:tcp, "192.168.20.2", 53], [:udp, "192.168.20.2", 53]])
+UDNS = CONF.get('upstream_dns')
+UPSTREAM = RubyDNS::Resolver.new([[:tcp, UDNS, 53], [:udp, UDNS, 53]])
 
 module VagrantDns
 
