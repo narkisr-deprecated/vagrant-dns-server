@@ -1,9 +1,3 @@
-require 'em-zeromq'
-require 'constants'
-require 'resolver'
-require 'dns'
-require 'eventmachine'
-
 module VagrantDns
   class Server
     def initialize

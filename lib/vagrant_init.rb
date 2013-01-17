@@ -1,10 +1,4 @@
-require 'vagrant'
-require 'log4r'
-require 'constants'
-require 'middleware/update'
-require 'middleware/remove'
-require 'middleware/network_binder'
-require 'zmq'
+require 'vagrant_dns_plugin'
 
 #see http://tinyurl.com/bfuawuj  
 Vagrant.actions[:provision].insert_after(Vagrant::Action::VM::Provision, VagrantDns::Middleware::Update)

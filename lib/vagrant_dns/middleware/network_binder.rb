@@ -1,3 +1,6 @@
+
+require 'zmq'
+
 module VagrantDns
 
   UI = Vagrant::UI::Colored.new('dns')

@@ -2,10 +2,7 @@ require 'rubydns'
 require 'moneta'
 require 'forwardable'
 
-IN = Resolv::DNS::Resource::IN
-
-# TODO upstream should be configurable
-UPSTREAM = RubyDNS::Resolver.new([[:tcp, "8.8.8.8", 53], [:udp, "8.8.8.8", 53]])
+UPSTREAM = RubyDNS::Resolver.new([[:tcp, "192.168.20.2", 53], [:udp, "192.168.20.2", 53]])
 
 module VagrantDns
 
@@ -24,7 +21,6 @@ module VagrantDns
     def initialize
 	RubyDNS::run_server(:listen => [[:tcp, "localhost", 53],[:udp, "localhost", 53]]) do
 	  on(:start) do 
-	    # RExec.change_user(RUN_AS)
 	    if ARGV.include?("--debug")
 		@logger.level = Logger::DEBUG
 	    else

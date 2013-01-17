@@ -3,7 +3,7 @@
 $:.push 'lib'
 require 'rubygems'
 require 'thor'
-require 'server'
+require 'vagrant_dns_server'
 
 class Main < Thor
 
