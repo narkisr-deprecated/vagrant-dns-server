@@ -1,0 +1,3 @@
+--- 
+ upstream_dns: <%=upstream%>
+ zmq_url: <%=zmq_url%>
