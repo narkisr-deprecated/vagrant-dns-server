@@ -19,8 +19,8 @@ module VagrantDns
 	    @dns = VagrantDns::DnsServer.new
 	    puts "processing "
 	    pull= zmq.socket(ZMQ::SUB)
-	    pull.bind(URL)
-	    pull.subscribe 'vagrant'
+	    pull.bind(CONF.get('zmq_url'))
+	    pull.subscribe('vagrant')
 	    pull.on(:message) { |part|
             host, ip, stat=  unpack(part.copy_out_string)
 		puts "[#{ip}->#{host}]: is #{stat.to_s}"

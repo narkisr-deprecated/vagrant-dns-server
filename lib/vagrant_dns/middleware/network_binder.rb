@@ -31,7 +31,7 @@ module VagrantDns
     def report(host,ip,status)
 	context = ZMQ::Context.new
 	pub = context.socket(ZMQ::PUB)
-	pub.connect URL
+	pub.connect(CONF.get('zmq_url'))
 	UI.say(:debug,"connection made")
 	res = pub.send("#{CHANNEL} #{host} #{ip} #{status.to_s}", ZMQ::NOBLOCK)
 	UI.say(:info,"notifying dns server with #{status} status") if res

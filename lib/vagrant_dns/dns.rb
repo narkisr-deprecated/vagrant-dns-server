@@ -1,6 +1,3 @@
-require 'rubydns'
-require 'moneta'
-require 'forwardable'
 
 UDNS = CONF.get('upstream_dns')
 UPSTREAM = RubyDNS::Resolver.new([[:tcp, UDNS, 53], [:udp, UDNS, 53]])

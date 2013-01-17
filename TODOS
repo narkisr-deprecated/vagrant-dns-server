@@ -1,9 +1,6 @@
-* Add 127.0.0.1 to resolve.conf on server startup, clear out on teardown
+* Add 127.0.0.1 to resolve.conf on server startup, clear out on teardown ( See http://www.ubuntututorials.com/set-dns-server-ubuntu-12-04/)
 * Add 10.0.2.2 to guest resolv.conf
 * Implement remove ip on VM shutdown
 * Enable remote api to the running server (listing, adding, removing)
 * Consider adding a hardcoded list of host (useful for non vagrant machines)
 * Add support for configuration of:
-  * Upsream dns server address
-  * Local zmq port
-  * See http://www.ubuntututorials.com/set-dns-server-ubuntu-12-04/
