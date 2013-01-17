@@ -23,12 +23,21 @@ module VagrantDns
   class DnsServer
     def initialize
 	RubyDNS::run_server(:listen => [[:tcp, "localhost", 53],[:udp, "localhost", 53]]) do
+	  on(:start) do 
+	    # RExec.change_user(RUN_AS)
+	    if ARGV.include?("--debug")
+		@logger.level = Logger::DEBUG
+	    else
+		@logger.level = Logger::WARN
+	    end
+
+	  end
+
 	  otherwise do |transaction|
 	    ip = REG.read(transaction.name)
 	    if(ip)
 		transaction.respond!(ip)
 	    else
-		puts "not found moving to UPSTREAM"
 		begin
 		  transaction.passthrough!(UPSTREAM)
 		rescue Exception => e
