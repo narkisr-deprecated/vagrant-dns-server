@@ -1,6 +1,7 @@
 require 'vagrant'
 require 'zmq'
 # client
+require 'moneta'
 require 'vagrant_dns/consts'
 require 'vagrant_dns/configuration'
 require 'vagrant_dns/middleware/update'
