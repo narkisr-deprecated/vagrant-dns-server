@@ -3,7 +3,31 @@
 $:.push 'lib'
 require 'rubygems'
 require 'thor'
+require 'thor/group'
 require 'vagrant_dns_server'
+
+module VagrantDns
+  class Generate	< Thor::Group
+    include Thor::Actions 
+
+    argument :upstream, :type => :string, :desc => 'upstream dns server', :default => '8.8.8.8'
+    argument :zmq_url, :type => :string, :desc => 'zeromq connection url', :default => 'tcp://127.0.0.1:7005'
+
+    def self.source_root
+	# during dev time
+	if(File.dirname(__FILE__) == './bin')
+	  File.dirname('.')
+	else
+	  "#{File.dirname(__FILE__)}/../"
+	end
+    end
+
+    desc "generate DNS server settings files #{ENV['HOME']}/.vagrant_dns.yaml"
+    def create_yaml
+	template('templates/vagrant_dns.yaml', "#{ENV['HOME']}/.vagrant_dns.yaml")
+    end
+  end
+end
 
 class Main < Thor
 
@@ -12,6 +36,8 @@ class Main < Thor
     @server = VagrantDns::Server.new   
     @server.process 
   end
+  register VagrantDns::Generate, 'generate', 'generate [upstream dns (8.8.8.8)] [zmq url (tcp://127.0.0.1)]', 'Generate vagrant_dns configuration file'
+
 end
 
 
