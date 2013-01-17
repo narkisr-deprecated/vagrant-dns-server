@@ -6,3 +6,4 @@
 * Add support for configuration of:
   * Upsream dns server address
   * Local zmq port
+  * See http://www.ubuntututorials.com/set-dns-server-ubuntu-12-04/
