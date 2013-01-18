@@ -3,4 +3,3 @@
 * Implement remove ip on VM shutdown
 * Enable remote api to the running server (listing, adding, removing)
 * Consider adding a hardcoded list of host (useful for non vagrant machines)
-* Add support for configuration of:
