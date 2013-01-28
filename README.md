@@ -1,7 +1,11 @@
 # Intro
 vagrant-dns enables easy dns management of multiple local Vagrant machines.
 
+
 It composed from a Vagrant plugin and standalone dns server, the plugin auto registers the host and ip of the VM once it boots up making it available for lookup on both the host and guest machines.
+
+# Demo
+<iframe width="560" height="315" src="http://www.youtube.com/embed/6GFobNDvwpI" frameborder="0" allowfullscreen></iframe>
 
 # Install
  
