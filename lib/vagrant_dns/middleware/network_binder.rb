@@ -37,10 +37,10 @@ module VagrantDns
 	  UI.say(:debug,"connection made")
 	  res = pub.send("#{CHANNEL} #{host} #{ip} #{status.to_s}", ZMQ::NOBLOCK)
 	  UI.say(:info,"notifying dns server with #{status} status")
+	  pub.close
 	else
 	  UI.say(:debug,"dns server isn't up, skiping notifying #{status} status") 
 	end
-	pub.close
     end
   end
 end
