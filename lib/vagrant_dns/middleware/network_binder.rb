@@ -29,13 +29,17 @@ module VagrantDns
   class Status
     # if socket is created on middleware initialization vagrant will get stuck
     def report(host,ip,status)
-	context = ZMQ::Context.new
-	pub = context.socket(ZMQ::PUB)
-	pub.connect(CONF.get('zmq_url'))
-	UI.say(:debug,"connection made")
-	res = pub.send("#{CHANNEL} #{host} #{ip} #{status.to_s}", ZMQ::NOBLOCK)
-	UI.say(:info,"notifying dns server with #{status} status") if res
-	UI.say(:info,"dns server isn't up, skiping notifying #{status} status") if not res
+	url = CONF.get('zmq_url')
+	if(port_open?('localhost',url.split(':')[-1]))
+	  context = ZMQ::Context.new
+	  pub = context.socket(ZMQ::PUB)
+	  pub.connect(url)
+	  UI.say(:debug,"connection made")
+	  res = pub.send("#{CHANNEL} #{host} #{ip} #{status.to_s}", ZMQ::NOBLOCK)
+	  UI.say(:info,"notifying dns server with #{status} status")
+	else
+	  UI.say(:debug,"dns server isn't up, skiping notifying #{status} status") 
+	end
 	pub.close
     end
   end
