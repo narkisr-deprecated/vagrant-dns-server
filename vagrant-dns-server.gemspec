@@ -16,7 +16,7 @@ Gem::Specification.new do |gem|
   gem.version       = VagrantDns::VERSION
 
   gem.add_dependency  'vagrant', '~>1.0.3'
-  gem.add_dependency  'rubydns'
+  gem.add_dependency  'rubydns', '= 0.6.0'
   gem.add_dependency  'em-zeromq'
   gem.add_dependency  'zmq' # required by client
   gem.add_dependency  'thor'
