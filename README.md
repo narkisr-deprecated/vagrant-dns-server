@@ -8,15 +8,28 @@ Follow [this](https://www.youtube.com/watch?v=6GFobNDvwpI) this demo to see it i
 # Install
  
 ```bash
-  $ sudo aptitude install libzmq1  libzmq-dev
-  $ gem install vagrant-dns-server
+  $ sudo aptitude install libzmq1 libzmq-dev
+  $ vagrant plugin install vagrant-dns-server
 ```
 
 # Usage
 
-Add the plugin to the project Gemfile, use vagrant_dns server to boot the local dns server
+TBD
 
+# Developing
 
+Its recommended to have RVM installed, currently ruby 1.9.3 is used (see .ruby files)
+
+```bash 
+$ git clone git://github.com/narkisr/vagrant-dns-server.git
+$ gem install bundle
+$ bundle install 
+# start the server (generating default configuration first)
+$ ./bin/vagrant_dns generate
+$ rvmsudo ./bin/vagrant_dns server 
+# run the plugin in development mode
+$ bundle exec vagrant up 
+```
 # Alternatives
 
 There are two existing project that aim to provide similar functionality:
