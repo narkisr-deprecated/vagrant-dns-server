@@ -3,7 +3,7 @@ require 'zmq'
 
 module VagrantDns
 
-  UI = Vagrant::UI::Colored.new('dns')
+  UI = Vagrant::UI::Colored.new()
   class NetworkBinder
     def bind(vm)
 	(host,ip) = host_ip(vm)
