@@ -17,12 +17,12 @@ module VagrantDns
 
     private 
     def host_ip(vm)
-	networks = vm.config.vm.networks.find_all do |type,network_parameters|
-	  type == :hostonly 
+	network = vm.config.vm.networks.find do |type,network_parameters|
+	  type == :private_network
 	end
-	ips = networks.map {|type,params| params.first}
-	host = vm.config.vm.host_name
-	[host,ips.first]
+	ip = network[1][:ip]
+	host = vm.config.vm.hostname
+	[host, ip]
     end
   end
 
