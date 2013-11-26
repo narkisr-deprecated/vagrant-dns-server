@@ -8,7 +8,7 @@ module VagrantDns
 
 	def call(env)
 	  @app.call(env)
-	  update env[:vm] if env["vm"].state == :running
+	  update env[:machine] if env[:machine].provider.state.id == :running
 	end
 
 	protected
