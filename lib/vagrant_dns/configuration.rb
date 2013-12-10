@@ -1,4 +1,4 @@
-
+require 'forwardable'
 
 module VagrantDns
   
