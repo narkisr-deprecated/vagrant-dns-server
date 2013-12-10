@@ -13,7 +13,7 @@ GIT
 PATH
   remote: .
   specs:
-    vagrant-dns-server (0.4)
+    vagrant-dns-server (0.4.1)
       em-zeromq
       log4r
       moneta
