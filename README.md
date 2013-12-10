@@ -12,17 +12,46 @@ Follow [this](https://www.youtube.com/watch?v=6GFobNDvwpI) this demo to see it i
 # Install
  
 ```bash
-  $ sudo aptitude install libzmq1 libzmq-dev
-  $ vagrant plugin install vagrant-dns-server
+$ sudo aptitude install libzmq1 libzmq-dev
+$ vagrant plugin install vagrant-dns-server
+# dns server
+$ gem install vagrant_dns_server 
+
 ```
 
 # Usage
 
-TBD
+DNS server side:
+```bash
+# generate configuration
+$ rvmsudo vagrant_dns server
+$ cat ~/.vagrant_dns.yaml
+--- 
+ upstream_dns: 8.8.8.8
+ zmq_url: tcp://127.0.0.1:7005
 
+# change dns setting to point to localhost
+$ cat /etc/resolv.conf
+nameserver 127.0.0.1
+search local
+```
+
+Once the plugin is installed only vagrant up is required to register local ip address:
+
+```ruby
+Vagrant.configure("2") do |config|
+
+  config.vm.define :ubuntu do |ubuntu|
+    ubuntu.vm.box = 'ubuntu-13.04_puppet-3.3.1'
+    ubuntu.vm.hostname = 'ubunt-redis.local'
+    ubuntu.vm.network :forwarded_port, guest: 6379, host: 6379
+    ubuntu.vm.network :private_network, ip: "192.168.2.25"
+  end
+end
+
+```
 # Developing
-
-Its recommended to have RVM installed, currently ruby 1.9.3 is used (see .ruby files)
+ts recommended to have RVM installed, currently ruby 1.9.3 is used (see .ruby files)
 
 ```bash 
 $ git clone git://github.com/narkisr/vagrant-dns-server.git
