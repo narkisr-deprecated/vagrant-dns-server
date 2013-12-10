@@ -1,7 +1,3 @@
-# NOTICE
-
-This plugin is moving to vagrant v2 api's in the near time, until its done don't try to use it
-
 # Intro
 vagrant-dns enables easy dns management of multiple local Vagrant machines.
 
