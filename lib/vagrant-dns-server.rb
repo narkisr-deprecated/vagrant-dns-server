@@ -19,7 +19,7 @@ module VagrantDnsServer
 
 
     action_hook(:vagrant_dns_plugin) do |hook|
-	hook.after(::Vagrant::Action::Builtin::Provision, VagrantDns::Middleware::Update)
+	# hook.after(::Vagrant::Action::Builtin::Provision, VagrantDns::Middleware::Update)
 	hook.after(VagrantPlugins::ProviderVirtualBox::Action::Boot, VagrantDns::Middleware::Update)
     end
 
