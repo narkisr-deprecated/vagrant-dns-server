@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-require 'vagrant_init'
+require 'vagrant_dns_server'
 
 Vagrant.configure("2") do |config|
 

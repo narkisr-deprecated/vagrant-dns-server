@@ -4,7 +4,7 @@ $:.push 'lib'
 require 'rubygems'
 require 'thor'
 require 'thor/group'
-require 'vagrant_dns_server'
+require 'std_server'
 
 module VagrantDns
   class Generate	< Thor::Group
