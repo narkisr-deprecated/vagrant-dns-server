@@ -20,7 +20,7 @@ $ gem install vagrant_dns_server
 DNS server side:
 ```bash
 # generate configuration
-$ rvmsudo vagrant_dns server
+$ rvmsudo vagrant_dns generate
 $ cat ~/.vagrant_dns.yaml
 --- 
  upstream_dns: 8.8.8.8
@@ -30,16 +30,30 @@ $ cat ~/.vagrant_dns.yaml
 $ cat /etc/resolv.conf
 nameserver 127.0.0.1
 search local
+# Now start the local server
+$ rvmsudo vagrant_dns server
+
+I, [2013-12-10T20:42:45.764894 #6408]  INFO -- : Starting RubyDNS server (v0.6.0)...
+I, [2013-12-10T20:42:45.765000 #6408]  INFO -- : Listening on tcp:localhost:53
+I, [2013-12-10T20:42:45.765301 #6408]  INFO -- : Listening on udp:localhost:53
+processing
 ```
 
-Once the plugin is installed only vagrant up is required to register local ip address:
+Now you can launch vagrant instances and watch them get registered
+
+```bash
+# On the server stdout
+[192.168.2.25->ubuntu-redis.local]: is up
+```
+
+Make sure to have local ip address on the vagrant machines:
 
 ```ruby
 Vagrant.configure("2") do |config|
 
   config.vm.define :ubuntu do |ubuntu|
     ubuntu.vm.box = 'ubuntu-13.04_puppet-3.3.1'
-    ubuntu.vm.hostname = 'ubunt-redis.local'
+    ubuntu.vm.hostname = 'ubuntu-redis.local'
     ubuntu.vm.network :forwarded_port, guest: 6379, host: 6379
     ubuntu.vm.network :private_network, ip: "192.168.2.25"
   end
